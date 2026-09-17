@@ -27,6 +27,7 @@ def exportar_dados():
         escritor.writeheader()
         escritor.writerows(registros)
     print("Dados exportados para 'dados_farmtech.csv' com sucesso!")
+
 def listar_fazendas():
     print("\n### Relatório de Fazendas ###")
 
@@ -87,6 +88,15 @@ def excluir_fazenda():
             if 0 <= id_fazenda < len(registros):
                 fazenda_removida = registros.pop(id_fazenda)
                 print(f"Fazenda '{fazenda_removida['fazenda']}' excluída com sucesso!")
+def atualizar_fazenda():
+    listar_fazendas()
+    while True:
+        if registros:
+            id_fazenda = int(input("\nDigite o ID da fazenda que deseja atualizar: "))
+            if 0 <= id_fazenda < len(registros):
+                novo_nome = input("Digite o novo nome da fazenda: ")
+                registros[id_fazenda]['fazenda'] = novo_nome
+                print("Fazenda atualizada com sucesso!")
                 break
             else:
                 print("ID não encontrado.")
@@ -109,7 +119,7 @@ def menu():
         elif opcao == "2":
             listar_fazendas()
         elif opcao == "3":
-            print("Atualização de dados")
+            atualizar_fazenda()
             exportar_dados()
         elif opcao == "4":
             print("Exclusão de dados")
