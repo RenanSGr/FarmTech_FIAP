@@ -1,3 +1,5 @@
+import math
+
 registros = []
 
 def salvar_fazenda(nome_fazenda, cultura, area_m2, tipo_insumo, quantidade_insumo, unidade_insumo):
@@ -8,9 +10,13 @@ def salvar_fazenda(nome_fazenda, cultura, area_m2, tipo_insumo, quantidade_insum
 def calcular_area_retangular(largura, comprimento):
     return largura * comprimento
 
+def calcular_area_circular(raio):
+    return math.pi * raio ** 2
+
 def incluir_fazenda():
     while True:
         print("1. Cana-de-açúcar")
+        print("2. Laranja")
 
         cultura = input("Insira a cultura: ")
 
@@ -22,12 +28,20 @@ def incluir_fazenda():
             area_m2 = calcular_area_retangular(largura, comprimento)
             tipo_insumo = "Fertilizante NPK"
             unidade_insumo = "kg"
-            quantidade_insumo_kg = 500 * (area_m2 / 10000)
+            quantidade_insumo = 500 * (area_m2 / 10000)
+        elif cultura == "2":
+            fazenda = input("\nInsira o nome da fazenda: ")
+            cultura = "Laranja"
+            raio = float(input("Insira o raio do terreno em metros: "))
+            area_m2 = calcular_area_circular(raio)
+            tipo_insumo = "Defensivo Foliar"
+            unidade_insumo = "litros"
+            quantidade_insumo = 2000 * (area_m2 / 10000)
         else:
             print("Opção Inválida!\n")
             continue
 
-        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,unidade_insumo,quantidade_insumo_kg)
+        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,unidade_insumo,quantidade_insumo)
         break
 
 def menu():
