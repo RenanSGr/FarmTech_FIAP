@@ -2,6 +2,16 @@ import math
 
 registros = []
 
+def listar_fazendas():
+    print("\n### Relatório de Fazendas ###")
+
+    if not registros:
+        print("Nenhum dado cadastrado ainda.")
+        return
+
+    for i, registro in enumerate(registros):
+        print(f"ID: {i} | Fazenda: {registro['fazenda']} | {registro['cultura']} | Insumo: {registro['quantidade_insumo']:.2f} {registro['unidade_insumo']}")
+
 def salvar_fazenda(nome_fazenda, cultura, area_m2, tipo_insumo, quantidade_insumo, unidade_insumo):
     registro_novo = {"fazenda": nome_fazenda,"cultura": cultura,"area_m2": area_m2, "tipo_insumo": tipo_insumo, "quantidade_insumo": quantidade_insumo, "unidade_insumo": unidade_insumo}
     registros.append(registro_novo)
@@ -41,14 +51,14 @@ def incluir_fazenda():
             print("Opção Inválida!\n")
             continue
 
-        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,unidade_insumo,quantidade_insumo)
+        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,quantidade_insumo,unidade_insumo)
         break
 
 def menu():
     while True:
         print("\n### FarmTech Solutions ###")
         print("1. Entrada de dados")
-        print("2. Saída de dados")
+        print("2. Listar fazendas")
         print("3. Atualização de dados")
         print("4. Exclusão de dados")
         print("5. Sair")
@@ -59,7 +69,7 @@ def menu():
         if opcao == "1":
             incluir_fazenda()
         elif opcao == "2":
-            print("Saída de dados")
+            listar_fazendas()
         elif opcao == "3":
             print("Atualização de dados")
         elif opcao == "4":
