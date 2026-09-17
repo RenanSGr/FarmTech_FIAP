@@ -122,7 +122,7 @@ def menu():
             atualizar_fazenda()
             exportar_dados()
         elif opcao == "4":
-            print("Exclusão de dados")
+            excluir_fazenda()
             exportar_dados()
         elif opcao == "5":
             print("Saindo do sistema...")
