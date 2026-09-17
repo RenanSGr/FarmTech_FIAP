@@ -1,7 +1,32 @@
+import csv
 import math
 
 registros = []
 
+
+def carregar_dados():
+    try:
+        with open('dados_farmtech.csv', mode='r', encoding='utf-8') as arquivo:
+            leitor = csv.DictReader(arquivo)
+            for linha in leitor:
+                linha['area_m2'] = float(linha['area_m2'])
+                linha['quantidade_insumo'] = float(linha['quantidade_insumo'])
+                registros.append(linha)
+        print("Dados carregados com sucesso!\n")
+    except FileNotFoundError:
+        print("Arquivo CSV não encontrado.")
+
+
+def exportar_dados():
+    if not registros:
+        print("Nenhum dado para exportar.")
+        return
+    colunas = ['fazenda', 'cultura', 'area_m2', 'tipo_insumo', 'quantidade_insumo', 'unidade_insumo']
+    with open('dados_farmtech.csv', mode='w', newline='', encoding='utf-8') as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=colunas)
+        escritor.writeheader()
+        escritor.writerows(registros)
+    print("Dados exportados para 'dados_farmtech.csv' com sucesso!")
 def listar_fazendas():
     print("\n### Relatório de Fazendas ###")
 
@@ -68,12 +93,15 @@ def menu():
 
         if opcao == "1":
             incluir_fazenda()
+            exportar_dados()
         elif opcao == "2":
             listar_fazendas()
         elif opcao == "3":
             print("Atualização de dados")
+            exportar_dados()
         elif opcao == "4":
             print("Exclusão de dados")
+            exportar_dados()
         elif opcao == "5":
             print("Saindo do sistema...")
             break
@@ -81,4 +109,5 @@ def menu():
             print("Opção Inválida!")
 
 if __name__ == "__main__":
+    carregar_dados()
     menu()
