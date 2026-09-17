@@ -4,6 +4,19 @@ import math
 registros = []
 
 
+def carregar_dados():
+    try:
+        with open('dados_farmtech.csv', mode='r', encoding='utf-8') as arquivo:
+            leitor = csv.DictReader(arquivo)
+            for linha in leitor:
+                linha['area_m2'] = float(linha['area_m2'])
+                linha['quantidade_insumo'] = float(linha['quantidade_insumo'])
+                registros.append(linha)
+        print("Dados carregados com sucesso!\n")
+    except FileNotFoundError:
+        print("Arquivo CSV não encontrado.")
+
+
 def exportar_dados():
     if not registros:
         print("Nenhum dado para exportar.")
@@ -87,4 +100,5 @@ def menu():
             print("Opção Inválida!")
 
 if __name__ == "__main__":
+    carregar_dados()
     menu()
