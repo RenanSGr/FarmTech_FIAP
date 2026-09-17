@@ -1,4 +1,36 @@
-cat("\n[1] Processando dados das fazendas...\n")
+library(httr)
+library(jsonlite)
+
+cat("===================================================\n")
+cat(" FARMTECH SOLUTIONS - MÓDULO R (ANÁLISE E CLIMA)\n")
+cat("===================================================\n\n")
+
+cat("[1] Buscando previsão do tempo via API (São Paulo)...\n")
+
+url_api <- "https://api.open-meteo.com/v1/forecast?latitude=-23.55&longitude=-46.63&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=America%2FSao_Paulo"
+
+resposta <- GET(url_api)
+
+if (status_code(resposta) == 200) {
+  dados_clima <- content(resposta, as = "parsed", type = "application/json")
+  
+  cat("\n--- PREVISÃO METEOROLÓGICA (Próximos 7 dias) ---\n")
+  datas <- dados_clima$daily$time
+  temp_max <- unlist(dados_clima$daily$temperature_2m_max)
+  temp_min <- unlist(dados_clima$daily$temperature_2m_min)
+  chuva <- unlist(dados_clima$daily$precipitation_sum)
+  
+  for (i in 1:length(datas)) {
+    cat(sprintf("Data: %s | Temp: %.1f°C a %.1f°C | Chuva: %.1f mm\n", 
+                datas[[i]], temp_min[i], temp_max[i], chuva[i]))
+  }
+} else {
+  cat("Erro ao conectar na API de clima. Verifique sua conexão.\n")
+}
+
+cat("\n===================================================\n")
+
+cat("\n[2] Processando dados das fazendas...\n")
 
 if (file.exists("dados_farmtech.csv")) {
   
