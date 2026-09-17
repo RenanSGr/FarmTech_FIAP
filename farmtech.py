@@ -80,6 +80,14 @@ def incluir_fazenda():
         salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,quantidade_insumo,unidade_insumo)
         break
 
+def excluir_fazenda():
+    listar_fazendas()
+    while True:
+        if registros:
+            id_fazenda = int(input("\nDigite o ID da fazenda que deseja excluir: "))
+            if 0 <= id_fazenda < len(registros):
+                fazenda_removida = registros.pop(id_fazenda)
+                print(f"Fazenda '{fazenda_removida['fazenda']}' excluída com sucesso!")
 def atualizar_fazenda():
     listar_fazendas()
     while True:
