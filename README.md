@@ -1,4 +1,8 @@
-Introdução:
+Link do Vídeo (Apresentação): https://youtu.be/RCnEYwCfSMA
+
+Link do GitHub (Repositório): https://github.com/RenanSGr/FarmTech_FIAP
+
+Descrição do projeto:
 
 Você e seu grupo estão na Startup FarmTech Solutions, trabalhando na equipe de Dev., e obviamente, vocês podem usar o ChatGPT ou Germini ou outra Inteligência Artificial (IA) de seu interesse para ajudar com essa tarefa — a FIAP não condena o uso de IAs em seus estudos, desde que o aluno tenha o olhar crítico para filtrar os erros e acertos das respostas propostas por elas.
 
@@ -27,7 +31,3 @@ g. Na sequência, usar esses dados para desenvolver uma aplicação em R para ca
 h. Na disciplina de Formação Social, o grupo resumirá o artigo disponível no Google Acadêmico (https://www.alice.cnptia.embrapa.br/alice/bitstream/doc/1003485/1/CAP8.pdf). O resumo é de até 1 folha A4, letra Arial 11, espaçamento 1 entre linhas, margens direita e esquerda em 2 cm.
 
 Ir além: usando R (e não Python), conectar-se a uma API meteorológica pública para coletar dados climáticos, processar e exibir as informações meteorológicas via texto simples no terminal.
-
-O que precisa entregar?
-
-Compacte todos os arquivos num único arquivo ZIP: Python, R, o resumo do artigo e o link do vídeo no Youtube. Além disso, grave um vídeo simples, de até 5 minutos, usando o seu celular ou um gravador de tela simples (por exemplo, streamyard.com) mostrando a sua tela do computador, comprovando o funcionamento completo da sua aplicação Python e R. Poste o seu vídeo no YouTube, marque como “não listado” (para deixá-lo no privado) e adicione o link à um arquivo TXT no pacote do ZIP.
