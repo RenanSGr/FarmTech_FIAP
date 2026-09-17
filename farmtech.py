@@ -88,6 +88,8 @@ def excluir_fazenda():
             if 0 <= id_fazenda < len(registros):
                 fazenda_removida = registros.pop(id_fazenda)
                 print(f"Fazenda '{fazenda_removida['fazenda']}' excluída com sucesso!")
+                break
+
 def atualizar_fazenda():
     listar_fazendas()
     while True:
