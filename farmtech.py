@@ -1,3 +1,49 @@
+import math
+
+registros = []
+
+def salvar_fazenda(nome_fazenda, cultura, area_m2, tipo_insumo, quantidade_insumo, unidade_insumo):
+    registro_novo = {"fazenda": nome_fazenda,"cultura": cultura,"area_m2": area_m2, "tipo_insumo": tipo_insumo, "quantidade_insumo": quantidade_insumo, "unidade_insumo": unidade_insumo}
+    registros.append(registro_novo)
+    print(f"Nova fazenda registrada: {registro_novo}")
+
+def calcular_area_retangular(largura, comprimento):
+    return largura * comprimento
+
+def calcular_area_circular(raio):
+    return math.pi * raio ** 2
+
+def incluir_fazenda():
+    while True:
+        print("1. Cana-de-açúcar")
+        print("2. Laranja")
+
+        cultura = input("Insira a cultura: ")
+
+        if cultura == "1":
+            fazenda = input("\nInsira o nome da fazenda: ")
+            cultura = "Cana-de-açúcar"
+            largura = float(input("Insira a largura do terreno em metros: "))
+            comprimento = float(input("Insira a comprimento do terreno em metros: "))
+            area_m2 = calcular_area_retangular(largura, comprimento)
+            tipo_insumo = "Fertilizante NPK"
+            unidade_insumo = "kg"
+            quantidade_insumo = 500 * (area_m2 / 10000)
+        elif cultura == "2":
+            fazenda = input("\nInsira o nome da fazenda: ")
+            cultura = "Laranja"
+            raio = float(input("Insira o raio do terreno em metros: "))
+            area_m2 = calcular_area_circular(raio)
+            tipo_insumo = "Defensivo Foliar"
+            unidade_insumo = "litros"
+            quantidade_insumo = 2000 * (area_m2 / 10000)
+        else:
+            print("Opção Inválida!\n")
+            continue
+
+        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,unidade_insumo,quantidade_insumo)
+        break
+
 def menu():
     while True:
         print("\n### FarmTech Solutions ###")
@@ -11,7 +57,7 @@ def menu():
         print("")
 
         if opcao == "1":
-            print("Entrada de dados")
+            incluir_fazenda()
         elif opcao == "2":
             print("Saída de dados")
         elif opcao == "3":
