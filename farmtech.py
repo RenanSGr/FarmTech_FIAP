@@ -1,6 +1,19 @@
+import csv
 import math
 
 registros = []
+
+
+def exportar_dados():
+    if not registros:
+        print("Nenhum dado para exportar.")
+        return
+    colunas = ['fazenda', 'cultura', 'area_m2', 'tipo_insumo', 'quantidade_insumo', 'unidade_insumo']
+    with open('dados_farmtech.csv', mode='w', newline='', encoding='utf-8') as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=colunas)
+        escritor.writeheader()
+        escritor.writerows(registros)
+    print("Dados exportados para 'dados_farmtech.csv' com sucesso!")
 
 def salvar_fazenda(nome_fazenda, cultura, area_m2, tipo_insumo, quantidade_insumo, unidade_insumo):
     registro_novo = {"fazenda": nome_fazenda,"cultura": cultura,"area_m2": area_m2, "tipo_insumo": tipo_insumo, "quantidade_insumo": quantidade_insumo, "unidade_insumo": unidade_insumo}
@@ -41,7 +54,7 @@ def incluir_fazenda():
             print("Opção Inválida!\n")
             continue
 
-        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,unidade_insumo,quantidade_insumo)
+        salvar_fazenda(fazenda,cultura,area_m2,tipo_insumo,quantidade_insumo,unidade_insumo)
         break
 
 def menu():
@@ -58,12 +71,15 @@ def menu():
 
         if opcao == "1":
             incluir_fazenda()
+            exportar_dados()
         elif opcao == "2":
             print("Saída de dados")
         elif opcao == "3":
             print("Atualização de dados")
+            exportar_dados()
         elif opcao == "4":
             print("Exclusão de dados")
+            exportar_dados()
         elif opcao == "5":
             print("Saindo do sistema...")
             break
